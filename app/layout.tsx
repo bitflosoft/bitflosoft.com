@@ -16,6 +16,7 @@ const spaceGrotesk = Space_Grotesk({
 });
 
 export const metadata: Metadata = {
+  manifest: '/site.webmanifest',
   title: 'Bitflosoft — Independent Mobile App Studio',
   description:
     'Bitflosoft is an independent mobile app studio building apps we believe in. Currently developing int:act — an AI-powered goal planner for iOS and Android that turns intentions into real progress.',
