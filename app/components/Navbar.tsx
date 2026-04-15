@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { Sun, Moon, ArrowRight, Menu, X } from "lucide-react";
 import { useTheme } from "./ThemeProvider";
 
@@ -89,11 +89,14 @@ export default function Navbar() {
       </div>
 
       {/* Mobile menu */}
+      <AnimatePresence>
       {menuOpen && (
         <motion.div
+          key="mobile-menu"
           initial={{ opacity: 0, height: 0 }}
           animate={{ opacity: 1, height: "auto" }}
           exit={{ opacity: 0, height: 0 }}
+          transition={{ duration: 0.25, ease: [0.25, 0.46, 0.45, 0.94] }}
           className="md:hidden bg-white/95 border-b border-zinc-200/70 dark:bg-[#050507]/95 dark:border-white/[0.06] backdrop-blur-xl px-6 py-5 flex flex-col gap-4"
         >
           {navLinks.map((item) => (
@@ -114,6 +117,7 @@ export default function Navbar() {
           </a>
         </motion.div>
       )}
+      </AnimatePresence>
     </motion.nav>
   );
 }

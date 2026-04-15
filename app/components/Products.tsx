@@ -3,6 +3,16 @@
 import { motion } from "framer-motion";
 import { Zap, RefreshCw, Clock, Lightbulb, FileText, BarChart3, Smartphone, Lock } from "lucide-react";
 
+const featureGrid = {
+  hidden: {},
+  visible: { transition: { staggerChildren: 0.07, delayChildren: 0.1 } },
+};
+
+const featureItem = {
+  hidden: { opacity: 0, y: 16 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.45, ease: [0.25, 0.46, 0.45, 0.94] as [number, number, number, number] } },
+};
+
 const INT_ACT_FEATURES = [
   {
     label: "Intention → Actions in < 60s",
@@ -123,10 +133,17 @@ export default function Products() {
                 <p className="text-xs font-medium text-zinc-400 dark:text-zinc-600 tracking-widest uppercase mb-5">
                   Core Features
                 </p>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <motion.div
+                  variants={featureGrid}
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true }}
+                  className="grid grid-cols-1 sm:grid-cols-2 gap-4"
+                >
                   {INT_ACT_FEATURES.map((f) => (
-                    <div
+                    <motion.div
                       key={f.label}
+                      variants={featureItem}
                       className="flex gap-3 p-4 rounded-2xl bg-zinc-50 border border-zinc-100 dark:bg-white/[0.02] dark:border-white/[0.04] hover:border-indigo-200 dark:hover:border-indigo-500/20 transition-colors duration-300"
                     >
                       <div className="w-7 h-7 rounded-lg bg-indigo-50 dark:bg-indigo-500/10 border border-indigo-100 dark:border-indigo-500/15 flex items-center justify-center text-indigo-500 dark:text-indigo-400 flex-shrink-0 mt-0.5">
@@ -140,9 +157,9 @@ export default function Products() {
                           {f.desc}
                         </p>
                       </div>
-                    </div>
+                    </motion.div>
                   ))}
-                </div>
+                </motion.div>
               </div>
             </div>
           </div>
